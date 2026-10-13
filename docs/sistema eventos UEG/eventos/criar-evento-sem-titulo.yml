@@ -1,0 +1,32 @@
+info:
+  name: Criar evento sem título (erro)
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/eventos"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "titulo": "",
+        "data": "2026-10-15",
+        "local": "UEG Anápolis"
+      }
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: neq
+      value: "201"
+
+settings:
+  encodeUrl: true
+
+docs: |-
+  Caminho de erro: título vazio deve ser rejeitado.
+  Hoje a API responde 500; o esperado é 400 com mensagem clara (pendente no S3-10).

@@ -37,4 +37,17 @@
             <version>2.17.1</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <mainClass>br.ueg.eventos.config.App</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

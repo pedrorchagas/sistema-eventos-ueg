@@ -1,0 +1,41 @@
+info:
+  name: Criar evento
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/eventos"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "titulo": "Semana de TI",
+        "data": "2026-10-15",
+        "local": "UEG Anápolis"
+      }
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        bru.setVar("eventoId", res.body.id);
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "201"
+    - expression: res.body.id
+      operator: isString
+    - expression: res.body.titulo
+      operator: eq
+      value: Semana de TI
+
+settings:
+  encodeUrl: true
+
+docs: |-
+  Cria um evento. `data` no formato `AAAA-MM-DD`.
+  O id retornado fica salvo na variável `eventoId`.

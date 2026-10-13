@@ -1,0 +1,11 @@
+opencollection: 1.0.0
+
+info:
+  name: sistema eventos UEG
+bundled: false
+extensions:
+  bruno:
+    defaultEnvironment: local
+    ignore:
+      - node_modules
+      - .git
